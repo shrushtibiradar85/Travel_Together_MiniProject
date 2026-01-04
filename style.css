@@ -1,0 +1,604 @@
+:root {
+    --bg: #f3f6fb;
+    --bg-2: #eef3fa;
+    --card: #ffffff;
+    --muted: #6f7c88;
+    --heading: #101b26;
+
+    --accent: #2b7cff;
+    --accent-dark: #1f63d4;
+    --accent-light: #e8f1ff;
+
+    --nav-bg: #1b2533;
+
+    --success-bg: #e8f7ee;
+    --success-text: #176c34;
+    --danger-bg: #ffecec;
+    --danger-text: #8a1b1b;
+
+    --radius: 12px;
+    --max-width: 1150px;
+    --shadow: 0 8px 22px rgba(0,0,0,0.06);
+
+    --font-sans: system-ui, "Segoe UI", Roboto, Arial;
+
+    --transition: 0.2s ease;
+}
+
+/* -------------------- Reset / Base -------------------- */
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+
+body {
+    background: linear-gradient(180deg, var(--bg), var(--bg-2) 120%);
+    font-family: var(--font-sans);
+    color: #1b2734;
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+/* -------------------- Navigation -------------------- */
+/* Full Background Image With Blur */
+.blur-bg {
+    background: url("/static/images/travel.jpeg") no-repeat center center/cover;
+    position: relative;
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+/* Blur + dark overlay */
+.blur-bg::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    /* multiple background images */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    animation: travelSlide 20s infinite alternate ease-in-out;
+    
+    /* blur + dim layer */
+    filter: dark(7px);
+    opacity: 0.85;
+    z-index: -2;
+}
+@keyframes travelSlide {
+    0%   { background-image: url("/static/images/beach.jpg"); }
+    25%  { background-image: url("/static/images/beach_image.jpg"); }
+    50%  { background-image: url("/static/images/road_image.jpg"); }
+    75%  { background-image: url("/static/images/mountain_image.jpg"); }
+    100% { background-image: url("/static/images/best-frvacationiend-.jpg"); }
+}
+.blur-bg::after {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0,0,0,0.45);
+    z-index: -1;
+}
+
+/* Make navbar readable */
+.nav {
+    background: linear-gradient(rgb(57, 188, 188),rgb(128, 197, 64));
+    backdrop-filter: blur(5px);
+    padding: 15px 40px;
+    display: flex;
+    align-items: center;
+    gap: 25px;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.nav a {
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: 17px;
+}
+
+.nav a:hover {
+    color: #ffd700;
+}
+
+/* Title */
+.hii {
+    color: white;
+    margin-right: auto;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Main content card style */
+.container {
+    margin-top: 50px;
+    padding: 20px;
+}
+
+/* -------------------- Flash Messages -------------------- */
+.flash-wrap { margin-bottom: 18px; }
+
+.image-gallery {
+    padding: 40px 20px;
+    background: #ffffff;
+}
+
+.gallery-title {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 25px;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Grid of images */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    grid-gap: 20px;
+}
+
+/* Each image tile */
+.gallery-grid img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 14px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Hover effect */
+.gallery-grid img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+}
+
+.flash {
+    padding: 12px 14px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    font-weight: 600;
+    border-left: 5px solid transparent;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.flash.success {
+    background: var(--success-bg);
+    color: var(--success-text);
+    border-color: #27ae60;
+}
+
+.flash.danger {
+    background: var(--danger-bg);
+    color: var(--danger-text);
+    border-color: #c0392b;
+}
+
+/* -------------------- Typography -------------------- */
+h1, h2, h3 {
+    margin: 0 0 12px;
+    font-weight: 700;
+    color: var(--heading);
+}
+
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.45rem; }
+h3 { font-size: 1.1rem; color: var(--muted); }
+
+/* -------------------- Forms -------------------- */
+form { margin-top: 10px; }
+
+label {
+    display: block;
+    margin: 10px 0 6px;
+    font-size: 0.95rem;
+    color: #2d3e50;
+    font-weight: 600;
+}
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d9e2ec;
+    border-radius: 10px;
+    background: #fafdff;
+    font-size: 1rem;
+    transition: var(--transition);
+}
+
+input:focus, textarea:focus, select:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 4px rgba(43,124,255,0.15);
+}
+
+/* -------------------- Buttons -------------------- */
+button, .btn {
+    margin:10px;
+    padding: 12px 18px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+    border-radius: 10px;
+    color: #fff;
+    font-weight: 700;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    box-shadow: 0 4px 12px rgba(43,124,255,0.25);
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(43,124,255,0.35);
+}
+
+button.secondary {
+    background: #ffffff;
+    border: 1px solid var(--accent);
+    color: var(--accent-dark);
+}
+
+/* -------------------- Cards -------------------- */
+.card {
+    background: var(--card);
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: var(--shadow);
+}
+
+/* -------------------- Lists -------------------- */
+.trip-list {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.trip-item {
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-between;
+    background: #f8fbff;
+    transition: var(--transition);
+}
+
+.trip-item:hover {
+    background: var(--accent-light);
+    transform: translateY(-1px);
+}
+
+/* -------------------- Chat -------------------- */
+#chat-area {
+    padding: 14px;
+    min-height: 160px;
+    max-height: 380px;
+    overflow-y: auto;
+    background: #f8fbff;
+    border-radius: 10px;
+    border: 1px solid #e0e7ef;
+}
+
+.msg {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 10px;
+}
+
+.msg .avatar {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, #d8e9ff, #bcd8ff);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    font-weight: 700;
+    color: #1b3d6b;
+}
+
+.msg .bubble {
+    background: #f1f5fa;
+    padding: 10px 14px;
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    max-width: 82%;
+}
+
+.msg.you .bubble {
+    background: linear-gradient(180deg, #e8f0ff, #d8e4ff);
+}
+
+#chat-form {
+    margin-top: 10px;
+    display: flex;
+    gap: 10px;
+}
+
+/* -------------------- Hero/Home Page -------------------- */
+.home-wrapper {
+    position: relative;
+    height: 90vh;
+    background: url("/static/images/shrutravel.jpeg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.home-wrapper .overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    backdrop-filter: blur(6px);
+}
+
+.home-content {
+    position: relative;
+    text-align: center;
+    color: rgb(244, 238, 238);
+    max-width: 650px;
+    padding: 20px;
+}
+
+.home-content h1 {
+    font-size: 48px;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 14px rgba(0,0,0,0.3);
+}
+
+.home-buttons a {
+    text-decoration: none;
+    padding: 12px 24px;
+    background: white;
+    color: #000;
+    border-radius: 8px;
+    margin: 9 8px;
+    font-weight: 700;
+    transition: var(--transition);
+}
+
+.home-buttons a:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+}
+
+/* -------------------- About Page -------------------- */
+.about-section {
+    max-width: 850px;
+    margin: 40px auto;
+    padding: 28px;
+    background: var(--card);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+}
+
+.about-section p {
+    font-size: 1.05rem;
+    line-height: 1.7;
+}
+
+/* -------------------- Footer -------------------- */
+.footer {
+    text-align: center;
+    padding: 16px;
+    color: var(--muted);
+    font-size: 0.95rem;
+}
+
+/* -------------------- Responsive -------------------- */
+@media (max-width: 700px) {
+    .container { padding: 18px; }
+    .nav { padding: 10px; }
+    .home-content h1 { font-size: 36px; }
+}
+/* ================================================================
+   HOME PAGE HERO SECTION (Blur background + Modern glass card)
+================================================================ */
+
+/* Fullscreen hero container */
+.home-container {
+    position: relative;
+    width: 100%;
+    height: 88vh;
+    background: url("/static/images/travel_bg.jpg") center/cover no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+/* Dark blur overlay */
+.home-container .overlay {
+    position: absolute;
+    inset: 0;
+    backdrop-filter: blur(6px);
+    background: rgba(0, 0, 0, 0.45);
+}
+
+/* Frosted glass welcome card */
+.welcome-card {
+    position: relative;
+    max-width: 600px;
+    padding: 38px 40px;
+    border-radius: 18px;
+    backdrop-filter: blur(18px);
+    background: linear-gradient(rgb(13, 231, 13),rgb(227, 227, 9));
+    border: 1px solid rgba(255,255,255,0.25);
+    text-align: center;
+    color: #fff;
+    box-shadow: 0 8px 22px rgba(0,0,0,0.35);
+    animation: fadeUp 0.8s ease-out;
+}
+
+/* Title */
+.welcome-card h1 {
+    font-size: 42px;
+    font-weight: 800;
+    margin-bottom: 18px;
+    text-shadow: 0 4px 16px rgba(0,0,0,0.4);
+}
+
+/* Subtitle */
+.welcome-card p {
+    font-size: 18px;
+    margin-bottom: 25px;
+    color: blue;
+    line-height: 1.6;
+}
+
+/* Buttons */
+.hero-btn {
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 10px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-dark));
+    color: #fff !important;
+    font-weight: 700;
+    margin: 0 10px;
+    box-shadow: 0 4px 14px rgba(43,124,255,0.35);
+    transition: 0.25s ease;
+}
+
+.hero-btn:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 6px 20px rgba(43,124,255,0.45);
+}
+
+/* Animation */
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Mobile friendly */
+@media (max-width: 650px) {
+    .welcome-card {
+        max-width: 90%;
+        padding: 26px 22px;
+    }
+    .welcome-card h1 { font-size: 32px; }
+    .welcome-card p { font-size: 16px; }
+    .hero-btn { font-size: 16px; padding: 10px 22px; }
+}
+/* ------------------------------
+   LOGIN PAGE BOX STYLE
+--------------------------------*/
+
+.box {
+    max-width: 400px;
+    margin: 40px auto;
+    padding: 30px 35px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.box label {
+    font-weight: 600;
+    display: block;
+    margin-top: 12px;
+}
+
+.box input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #2b7cff;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.box button:hover {
+    background: #1f5ed1;
+}
+
+/* fade-in effect */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+/* ------------------------------
+   CREATE TRIP PAGE BOX STYLE
+--------------------------------*/
+
+.create-trip-box {
+    max-width: 520px;
+    margin: 40px auto;
+    padding: 30px 35px;
+    background: #ffffff;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+.create-trip-box h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 800;
+}
+
+.create-trip-box label {
+    font-weight: 600;
+    display: block;
+    margin-top: 12px;
+}
+
+.create-trip-box input,
+.create-trip-box textarea {
+    width: 100%;
+    padding: 12px 14px;
+    margin-top: 6px;
+    border-radius: 10px;
+    border: 1px solid #ccc;
+    font-size: 15px;
+}
+
+.create-trip-box textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.create-trip-box button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #ff8c00;
+    color: white;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.create-trip-box button:hover {
+    background: #e07a00;
+}
+
+/* fade animation */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
