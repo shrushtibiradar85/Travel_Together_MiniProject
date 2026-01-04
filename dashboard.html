@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body.blur-bg::before,
+    body.blur-bg::after {
+        display: none !important;
+    }
+    body.blur-bg {
+        background: var(--bg) !important;
+    }
+</style>
+
+<h2>Welcome, {{ session.get('user_name') }}</h2>
+
+<section>
+  <h3>Your Trips</h3>
+  {% if my_trips %}
+    <ul>
+      {% for t in my_trips %}
+        <li><a href="{{ url_for('trip', trip_id=t.id) }}">{{ t.title or 'Trip to ' + t.destination }}</a> - {{ t.start_datetime }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No trips yet. <a href="{{ url_for('create_trip') }}">Create one</a></p>
+  {% endif %}
+</section>
+
+<section>
+  <h3>Upcoming trips by others</h3>
+  {% if other_trips %}
+    <ul>
+      {% for t in other_trips %}
+        <li><a href="{{ url_for('trip', trip_id=t.id) }}">{{ t.title or 'Trip to ' + t.destination }}</a> by {{ t.creator_name }} - {{ t.start_datetime }}</li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p>No public trips available.</p>
+  {% endif %}
+</section>
+{% endblock %}
