@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class="create-trip-box">
+    <h2>Create Trip</h2>
+
+    <form method="post">
+      <label>Title</label>
+      <input name="title">
+
+      <label>Destination</label>
+      <input name="destination" required>
+
+      <label>Details</label>
+      <textarea name="details"></textarea>
+
+      <label>Start Date & Time</label>
+      <input type="datetime-local" name="start_datetime" required>
+
+      <label>Transport</label>
+      <input name="transport">
+
+      <label>Max People</label>
+      <input type="number" name="max_people" value="5" min="1">
+
+      <button type="submit">Create</button>
+    </form>
+</div>
+
+{% endblock %}
