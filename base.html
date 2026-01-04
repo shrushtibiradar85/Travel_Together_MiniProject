@@ -1,0 +1,48 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Travel Together</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body class="blur-bg">
+  <nav class="nav">
+    <h1 class="hii" style="color:black">Welcome to Travel Together</h1>
+    <a href="{{ url_for('home') }}">Home</a>
+    <a href="{{ url_for('about_page') }}">About</a>
+
+    {% if session.get('user_id') %}
+      <a href="{{ url_for('search') }}">Search Trips</a>
+      <a href="{{ url_for('create_trip') }}">Create Trip</a>
+      <a href="{{ url_for('profile') }}">{{ session.get('user_name') }}</a>
+      <a href="{{ url_for('logout') }}">Logout</a>
+    {% else %}
+      <a href="{{ url_for('login') }}">Login</a>
+      <a href="{{ url_for('register') }}">Register</a>
+    {% endif %}
+</nav>
+
+  <div class="container">
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="flash-wrap">
+          {% for cat,msg in messages %}
+            <div class="flash {{cat}}">{{ msg }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+    {% block content %}{% endblock %}
+  </div>
+  <section class="image-gallery">
+    <h2 class="gallery-title">Explore Beautiful Destinations</h2>
+    
+    <div class="gallery-grid">
+        <img src="/static/images/beach.jpg" alt="">
+        <img src="/static/images/beach_image.jpg" alt="">
+        <img src="/static/images/mountain_image.jpg" alt="">
+    </div>
+</section>
+</body>
+</html>
