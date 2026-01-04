@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="home-container">
+  <div class="welcome-card">
+    <h1>🌍 Welcome to Travel Together</h1>
+    <p>Find people who are traveling to the same destination and make your journey more fun!</p>
+    
+    <div class="home-buttons">
+      <a href="{{ url_for('login') }}" class="btn">Login</a>
+      <a href="{{ url_for('register') }}" class="btn">Register</a>
+    </div>
+  </div>
+</section>
+{% endblock %}
