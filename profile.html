@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<style>
+    body.blur-bg::before,
+    body.blur-bg::after {
+        display: none !important;
+    }
+    body.blur-bg {
+        background: var(--bg) !important;
+    }
+</style>
+
+<h2>Your Profile</h2>
+<form method="post">
+  <label>Name</label><input name="name" value="{{ user.name }}">
+  <label>City</label><input name="city" value="{{ user.city or '' }}">
+  <button type="submit">Save</button>
+</form>
+{% endblock %}
